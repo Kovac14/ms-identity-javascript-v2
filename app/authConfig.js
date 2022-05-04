@@ -5,9 +5,10 @@
  */
 const msalConfig = {
     auth: {
-        clientId: "Enter_the_Application_Id_Here",
-        authority: "Enter_the_Cloud_Instance_Id_HereEnter_the_Tenant_Info_Here",
-        redirectUri: "Enter_the_Redirect_Uri_Here",
+        //clientId: "159f08f0-2870-43a2-9b8a-ae6d7dc8d202", //säljapro
+        clientId:"98da4862-79b1-4d13-a2d2-dc38a75193a4",
+        authority: "https://login.microsoftonline.com/720b637a-655a-40cf-816a-f22f40755c2c",
+        redirectUri: "http://localhost:3000",
     },
     cache: {
         cacheLocation: "sessionStorage", // This configures where your cache will be stored
@@ -54,5 +55,11 @@ const loginRequest = {
  */
 const tokenRequest = {
     scopes: ["User.Read", "Mail.Read"],
+    forceRefresh: false // Set this to "true" to skip a cached token and go to the server to get a new token
+};
+
+
+const tokenRequestCRM = {
+    scopes: ["https://customer-support-case-core-spike.crm4.dynamics.com/.default"],
     forceRefresh: false // Set this to "true" to skip a cached token and go to the server to get a new token
 };

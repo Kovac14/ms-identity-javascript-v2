@@ -97,6 +97,7 @@ function getTokenPopup(request) {
 function seeProfile() {
     getTokenPopup(loginRequest)
         .then(response => {
+            console.log("!!responseToken + " + response.accessToken);
             callMSGraph(graphConfig.graphMeEndpoint, response.accessToken, updateUI);
         }).catch(error => {
             console.error(error);
@@ -110,6 +111,16 @@ function readMail() {
         }).catch(error => {
             console.error(error);
         });
+} 
+
+function listCases() {
+    getTokenPopup(tokenRequestCRM)
+        .then(response => {
+            callDynamicsGraph3("https://customer-support-case-core-spike.api.crm4.dynamics.com/api/data/v9.2/incidents", response.accessToken, updateUI);
+        }).catch(error => {
+            console.error(error);
+        });
 }
+
 
 selectAccount();
